@@ -176,10 +176,22 @@ def sync(args):
 
 
 def change(args):
-    for e in reversed(events()):
-        if e['event_type']=='change_published' and e.get('change_id')==args.change: return e
-    raise RuntimeError('Change not found: '+args.change)
+    all_events = {
+        e['event_id']: e
+        for e in events()
+    }
 
+    for e in remote_events():
+        all_events[e['event_id']] = e
+
+    for e in reversed(list(all_events.values())):
+        if (
+            e['event_type'] == 'change_published'
+            and e.get('change_id') == args.change
+        ):
+            return e
+
+    raise RuntimeError('Change not found: ' + args.change)
 
 def inspect(args):
     e=change(args);print(json.dumps(e,indent=2,ensure_ascii=False))
