@@ -1,0 +1,5 @@
+.group/local/*
+!.group/local/.gitkeep
+__pycache__/
+.pytest_cache/
+*.pyc
