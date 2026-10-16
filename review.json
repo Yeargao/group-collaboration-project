@@ -1,0 +1,13 @@
+@'
+{
+  "change_id": "C-dac621ae",
+  "verdict": "needs_more_evidence",
+  "summary": "Parser basic functional test passed. Additional edge-case tests are needed before final acceptance.",
+  "issues": [
+    "Empty input and invalid numeric input have not been tested."
+  ],
+  "tests_run": [
+    "parse_numbers('10,20,30') == [10,20,30]: passed"
+  ]
+}
+'@ | Set-Content -Encoding utf8 review.json

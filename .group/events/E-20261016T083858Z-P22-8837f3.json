@@ -1,0 +1,18 @@
+{
+  "protocol_version": "0.1",
+  "event_id": "E-20261016T083858Z-P22-8837f3",
+  "event_type": "review",
+  "group_id": "G-12",
+  "person_id": "P22",
+  "created_at": "2026-10-16T08:38:58.649025Z",
+  "related_events": [],
+  "change_id": "C-dac621ae",
+  "verdict": "needs_more_evidence",
+  "summary": "Parser basic test passed, but edge cases require additional testing.",
+  "issues": [
+    "Empty input and invalid numeric input have not been tested."
+  ],
+  "tests_run": [
+    "parse_numbers('10,20,30') returned [10,20,30]: passed"
+  ]
+}
