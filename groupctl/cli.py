@@ -60,6 +60,47 @@ def events():
         except (ValueError,KeyError): pass
     return found
 
+def remote_events():
+    """Read collaboration events from remote personal branches."""
+    found = {}
+
+    branches = git(
+        'for-each-ref',
+        '--format=%(refname)',
+        'refs/remotes/origin/people/'
+    ).splitlines()
+
+    for branch in branches:
+        paths = git(
+            'ls-tree',
+            '-r',
+            '--name-only',
+            branch,
+            '--',
+            '.group/events'
+        ).splitlines()
+
+        for path in paths:
+            if not path.endswith('.json'):
+                continue
+
+            try:
+                content = git('show', f'{branch}:{path}')
+                e = json.loads(content)
+
+                if (
+                    COMMON <= e.keys()
+                    and e['event_type'] in TYPES
+                ):
+                    found[e['event_id']] = e
+
+            except (RuntimeError, ValueError, KeyError):
+                continue
+
+    return sorted(
+        found.values(),
+        key=lambda e: (e['created_at'], e['event_id'])
+    )
 
 def publish_event(path):
     git('add',str(path.relative_to(ROOT)))
@@ -111,7 +152,21 @@ def sync(args):
     if git('status','--porcelain'): raise RuntimeError('Working tree not clean; protect unfinished work before sync')
     git('fetch','--all','--tags')
     print('Recent group events:')
-    for e in events()[-12:]: print(e['event_type'],e.get('change_id',''),e['event_id'])
+    all_events = {
+        e['event_id']: e
+        for e in events()
+    }
+
+    for e in remote_events():
+        all_events[e['event_id']] = e
+
+    recent_events = sorted(
+        all_events.values(),
+        key=lambda e: (e['created_at'], e['event_id'])
+    )
+
+    for e in recent_events[-12:]:
+        print(e['event_type'], e.get('change_id', ''), e['event_id'])
     c=config(); branch=git('branch','--show-current')
     if branch != c['canonical_branch']:
         result=git('merge','--no-edit',f"origin/{c['canonical_branch']}",check=False)
