@@ -1,0 +1,16 @@
+{
+  "protocol_version": "0.1",
+  "event_id": "E-20261113T073712Z-P22-82372b",
+  "event_type": "integration_result",
+  "group_id": "G-12",
+  "person_id": "P22",
+  "created_at": "2026-11-13T07:37:12.077687Z",
+  "related_events": [],
+  "change_id": "C-a9766ac1",
+  "result": "success",
+  "summary": "Parser integrated and basic tests passed",
+  "tests": [
+    "Parser output verified",
+    "2 unit tests passed"
+  ]
+}
