@@ -1,3 +1,1 @@
-def parse_numbers(text):
-    """Convert comma-separated numbers into integers."""
-    return [int(x.strip()) for x in text.split(",")]
+def parse_numbers(text): return [int(x) for x in text.split(',')]
