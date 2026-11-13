@@ -1,0 +1,24 @@
+{
+  "protocol_version": "0.1",
+  "event_id": "E-20261016T080628Z-P17-3eaed7",
+  "event_type": "change_published",
+  "group_id": "G-12",
+  "person_id": "P17",
+  "created_at": "2026-10-16T08:06:28.936789Z",
+  "related_events": [],
+  "change_id": "C-443b9c8a",
+  "branch": "people/P17/parser",
+  "commit": "83bfe93f4f1398e0fb7a4a19c3c1ca623cd97b0e",
+  "summary": "Add comma-separated number parser",
+  "files_changed": [
+    "src/__init__.py"
+  ],
+  "interface_changes": [
+    "parse_numbers(text) returns a list of integers"
+  ],
+  "tests_run": [
+    "Manual parser test passed"
+  ],
+  "known_issues": [],
+  "proposed_for_integration": true
+}

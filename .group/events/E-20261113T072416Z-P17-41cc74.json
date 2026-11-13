@@ -1,0 +1,22 @@
+{
+  "protocol_version": "0.1",
+  "event_id": "E-20261113T072416Z-P17-41cc74",
+  "event_type": "change_published",
+  "group_id": "G-12",
+  "person_id": "P17",
+  "created_at": "2026-11-13T07:24:16.305454Z",
+  "related_events": [],
+  "change_id": "C-5a2d01c8",
+  "branch": "people/P17/parser",
+  "commit": "1781385f23131a7e6ea5b2c2693a687cbe1e5d0e",
+  "summary": "P17 parser test",
+  "files_changed": [
+    ".group/events/E-20261016T080813Z-P17-0c6f88.json"
+  ],
+  "interface_changes": [],
+  "tests_run": [
+    "unittest passed"
+  ],
+  "known_issues": [],
+  "proposed_for_integration": true
+}
